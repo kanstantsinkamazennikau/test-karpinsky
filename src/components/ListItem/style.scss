@@ -1,7 +1,6 @@
 .tree-node__list-item {
   display: flex;
   flex-direction: row;
-  height: 24px;
 
   &_selected {
     background-color: #eeeff8;
@@ -22,7 +21,9 @@
   }
 
   &__label {
+    word-break: break-all;
     &_margin {
+      
       &.MuiTypography-root {
         margin-left: 24px;
       }
@@ -33,30 +34,34 @@
     }
   }
 
-  &__button {
-    &.MuiButtonBase-root {
-      background-color: transparent;
-      border-radius: 50%;
-      border: none;
-      padding: 0;
-      margin: 0 3px;
-      height: 24px;
-      min-width: auto;
+  &-buttons {
+    display: flex;
 
-      &:hover {
-        background-color: #dedfe4;
+    &__button {
+      &.MuiButtonBase-root {
+        background-color: transparent;
+        border-radius: 50%;
+        border: none;
+        padding: 0;
+        margin: 0 3px;
+        height: 24px;
+        min-width: auto;
+  
+        &:hover {
+          background-color: #dedfe4;
+        }
       }
-    }
-   
-    &_blue {
-      & .MuiSvgIcon-root {
-        color: #3f51b5;
+      
+      &_blue {
+        & .MuiSvgIcon-root {
+          color: #3f51b5;
+        }
       }
-    }
-
-    &_red {
-      & .MuiSvgIcon-root {
-        color: #f50057;
+  
+      &_red {
+        & .MuiSvgIcon-root {
+          color: #f50057;
+        }
       }
     }
   }

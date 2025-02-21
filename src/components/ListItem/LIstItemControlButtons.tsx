@@ -34,9 +34,12 @@ export const ListItemControlButtons: React.FC<ListItemControlButtonsProps> = ({
   };
 
   return (
-    <div onClick={handleStopPropagation}>
+    <div onClick={handleStopPropagation} className="tree-node__list-item-buttons">
       <Button
-        className="tree-node__list-item__button tree-node__list-item__button_blue"
+        className="
+          tree-node__list-item-buttons__button
+          tree-node__list-item-buttons__button_blue
+        "
         onClick={handleAddNodeClick}
       >
         <AddCircleIcon />
@@ -44,13 +47,19 @@ export const ListItemControlButtons: React.FC<ListItemControlButtonsProps> = ({
       {!isRootNode && (
         <>
           <Button
-            className="tree-node__list-item__button tree-node__list-item__button_blue"
+            className="
+              tree-node__list-item-buttons__button
+              tree-node__list-item-buttons__button_blue
+            "
             onClick={handleEditNodeClick}
           >
             <EditIcon />
           </Button>
           <Button
-            className="tree-node__list-item__button tree-node__list-item__button_red"
+            className="
+              tree-node__list-item-buttons__button
+              tree-node__list-item-buttons__button_red
+            "
             onClick={handleDeleteNodeClick}
           >
             <DeleteForeverIcon />

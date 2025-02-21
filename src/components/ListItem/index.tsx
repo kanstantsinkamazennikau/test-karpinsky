@@ -1,12 +1,11 @@
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Typography } from "@mui/material";
 import { useContext, useState } from "react";
+import { UserTreeNode } from "../../api/userTree";
 import { UserTreeNodesContext } from "../../context/userTreeNodesContext";
 import { List } from "../List";
 import { ListItemControlButtons } from "./LIstItemControlButtons";
 import "./style.scss";
-import { ROOT } from "../../constants";
-import { UserTreeNode } from "../../api/userTree";
 
 type ListItemProps = {
   listItem: UserTreeNode;
@@ -55,13 +54,15 @@ export const ListItem: React.FC<ListItemProps> = ({ listItem }) => {
           />
         )}
         <Typography
-          className={
-            !isParentNode
-              ? "tree-node__list-item__label_margin"
-              : "tree-node__list-item__label_regular"
+          className={`
+              tree-node__list-item__label
+              ${!isParentNode
+                ? "tree-node__list-item__label_margin"
+                : "tree-node__list-item__label_regular"}
+            `
           }
         >
-          {isRootNode ? ROOT : name}
+          {name}
         </Typography>
 
         {isSelectedNode && <ListItemControlButtons isRootNode={isRootNode} />}
