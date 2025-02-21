@@ -1,0 +1,63 @@
+.tree-node__list-item {
+  display: flex;
+  flex-direction: row;
+  height: 24px;
+
+  &_selected {
+    background-color: #eeeff8;
+  }
+
+  &__chevron {
+    &.MuiSvgIcon-root {
+      transition: all 0.3s ease-out;
+    }
+
+    &_rotated {
+      transform: rotate(90deg);
+    }
+
+    &_regular {
+      transform: rotate(0deg);
+    }
+  }
+
+  &__label {
+    &_margin {
+      &.MuiTypography-root {
+        margin-left: 24px;
+      }
+    }
+
+    &_regular {
+      margin-left: 0;
+    }
+  }
+
+  &__button {
+    &.MuiButtonBase-root {
+      background-color: transparent;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      margin: 0 3px;
+      height: 24px;
+      min-width: auto;
+
+      &:hover {
+        background-color: #dedfe4;
+      }
+    }
+   
+    &_blue {
+      & .MuiSvgIcon-root {
+        color: #3f51b5;
+      }
+    }
+
+    &_red {
+      & .MuiSvgIcon-root {
+        color: #f50057;
+      }
+    }
+  }
+}

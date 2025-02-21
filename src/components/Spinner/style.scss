@@ -1,0 +1,10 @@
+.spinner-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(89, 90, 90, 0.205);
+  z-index: 10000;
+}

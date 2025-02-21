@@ -1,0 +1,17 @@
+$small: 600px;
+
+.modal-actions {
+  & .MuiButtonBase-root {
+    min-width: 90px;
+  }
+
+  .close-button {
+    width: 100%;
+  }
+
+  @media screen and (max-width: $small) {
+    & .MuiButtonBase-root {
+      width: 100%;
+    }
+  }
+}
