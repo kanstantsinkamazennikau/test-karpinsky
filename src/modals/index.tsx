@@ -18,7 +18,7 @@ type ModalProps = {
   body?: React.ReactElement;
   footer?: React.ReactElement;
   errorText?: string | null;
-  formAction: any;
+  formAction: () => void;
   isActionPending: boolean;
 };
 
