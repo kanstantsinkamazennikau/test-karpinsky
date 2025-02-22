@@ -1,6 +1,7 @@
 .tree-node__list-item {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 
   &_selected {
     background-color: #eeeff8;
