@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import { isAxiosError } from "axios";
-import { useContext, useState } from "react";
+import { useActionState, useContext } from "react";
 import { toast } from "react-toastify";
 import { Modal } from "..";
 import { ApiError } from "../../api";
@@ -17,36 +17,37 @@ import { UserTreeNodesContext } from "../../context/userTreeNodesContext";
 
 export const DeleteTreeNodeModal = () => {
   const {
-    isDeleteNodeModalOpen,
-    setIsDeleteNodeModalOpen,
-    setIsModalActionLoading,
+    modalsIsOpenStates: { isDeleteNodeModalOpen },
+    setModalsIsOpenStates,
   } = useContext(ModalsStateContext);
-
   const { selectedNode, setUserTreeNodes } = useContext(UserTreeNodesContext);
 
-  const [errorText, setErrorText] = useState("");
-
   const handleClose = () => {
-    setIsDeleteNodeModalOpen(false);
+    setModalsIsOpenStates((prevState) => ({
+      ...prevState,
+      isDeleteNodeModalOpen: false,
+    }));
   };
 
   const onSubmit = async () => {
     try {
-      setIsModalActionLoading(true);
       await deleteUserTreeNode(selectedNode!.id);
       const treeNodes = await getUserTree();
       setUserTreeNodes(treeNodes);
-      setIsDeleteNodeModalOpen(false);
+      handleClose();
       toast.success(COMPLETED);
+      return { error: null };
     } catch (error) {
       if (isAxiosError<ApiError>(error)) {
-        setErrorText(error.response?.data.data.message!);
         toast.error(error.response?.data.data.message);
+        return { error: error.response?.data.data.message };
       }
-    } finally {
-      setIsModalActionLoading(false);
     }
   };
+
+  const [actionResult, formAction, isPending] = useActionState(onSubmit, {
+    error: null,
+  });
 
   const modalBody = <Typography>{DELETE_CONFIRMATION}</Typography>;
   const modalFooter = (
@@ -54,7 +55,7 @@ export const DeleteTreeNodeModal = () => {
       <Button variant="outlined" onClick={handleClose}>
         {CANCEL}
       </Button>
-      <Button variant="outlined" color="error" onClick={onSubmit}>
+      <Button variant="outlined" color="error" type="submit">
         {DELETE}
       </Button>
     </>
@@ -67,7 +68,9 @@ export const DeleteTreeNodeModal = () => {
       footer={modalFooter}
       onClose={handleClose}
       isOpen={isDeleteNodeModalOpen}
-      erorrText={errorText}
+      errorText={actionResult?.error}
+      isActionPending={isPending}
+      formAction={formAction}
     />
   );
 };

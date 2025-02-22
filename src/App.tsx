@@ -13,8 +13,13 @@ import { Spinner } from "./components/Spinner";
 
 function App() {
   const { userTreeNodes, setUserTreeNodes } = useContext(UserTreeNodesContext);
-  const { isAddNodeModalOpen, isDeleteNodeModalOpen, isEditNodeModalOpen } =
-    useContext(ModalsStateContext);
+  const {
+    modalsIsOpenStates: {
+      isAddNodeModalOpen,
+      isDeleteNodeModalOpen,
+      isEditNodeModalOpen,
+    },
+  } = useContext(ModalsStateContext);
 
   const [isLoading, setIsLoading] = useState(true);
 

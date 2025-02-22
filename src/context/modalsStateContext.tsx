@@ -1,14 +1,18 @@
 import { createContext, useState } from "react";
 
 export type ModalsStateContextParams = {
-  isAddNodeModalOpen: boolean;
-  setIsAddNodeModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isEditNodeModalOpen: boolean;
-  setIsEditNodeModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isDeleteNodeModalOpen: boolean;
-  setIsDeleteNodeModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isModalActionLoading: boolean;
-  setIsModalActionLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  modalsIsOpenStates: {
+    isEditNodeModalOpen: boolean;
+    isAddNodeModalOpen: boolean;
+    isDeleteNodeModalOpen: boolean;
+  };
+  setModalsIsOpenStates: React.Dispatch<
+    React.SetStateAction<{
+      isEditNodeModalOpen: boolean;
+      isAddNodeModalOpen: boolean;
+      isDeleteNodeModalOpen: boolean;
+    }>
+  >;
 };
 
 export const ModalsStateContext = createContext<ModalsStateContextParams>(
@@ -22,25 +26,17 @@ interface ModalsStateContextProviderProps {
 export const ModalsStateContextProvider: React.FC<
   ModalsStateContextProviderProps
 > = ({ children }) => {
-  const [isAddNodeModalOpen, setIsAddNodeModalOpen] = useState<boolean>(false);
-  const [isEditNodeModalOpen, setIsEditNodeModalOpen] =
-    useState<boolean>(false);
-  const [isDeleteNodeModalOpen, setIsDeleteNodeModalOpen] =
-    useState<boolean>(false);
-  const [isModalActionLoading, setIsModalActionLoading] =
-    useState<boolean>(false);
+  const [modalsIsOpenStates, setModalsIsOpenStates] = useState({
+    isEditNodeModalOpen: false,
+    isAddNodeModalOpen: false,
+    isDeleteNodeModalOpen: false,
+  });
 
   return (
     <ModalsStateContext.Provider
       value={{
-        isAddNodeModalOpen,
-        setIsAddNodeModalOpen,
-        isEditNodeModalOpen,
-        setIsEditNodeModalOpen,
-        isDeleteNodeModalOpen,
-        setIsDeleteNodeModalOpen,
-        isModalActionLoading,
-        setIsModalActionLoading,
+        modalsIsOpenStates,
+        setModalsIsOpenStates,
       }}
     >
       {children}

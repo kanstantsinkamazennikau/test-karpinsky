@@ -12,29 +12,37 @@ type ListItemControlButtonsProps = {
 export const ListItemControlButtons: React.FC<ListItemControlButtonsProps> = ({
   isRootNode,
 }) => {
-  const {
-    setIsAddNodeModalOpen,
-    setIsEditNodeModalOpen,
-    setIsDeleteNodeModalOpen,
-  } = useContext(ModalsStateContext);
+  const { setModalsIsOpenStates } = useContext(ModalsStateContext);
 
   const handleStopPropagation = (e: React.MouseEvent<HTMLElement>) =>
     e.stopPropagation();
 
   const handleAddNodeClick = () => {
-    setIsAddNodeModalOpen(true);
+    setModalsIsOpenStates((prevState) => ({
+      ...prevState,
+      isAddNodeModalOpen: true,
+    }));
   };
 
   const handleEditNodeClick = () => {
-    setIsEditNodeModalOpen(true);
+    setModalsIsOpenStates((prevState) => ({
+      ...prevState,
+      isEditNodeModalOpen: true,
+    }));
   };
 
   const handleDeleteNodeClick = () => {
-    setIsDeleteNodeModalOpen(true);
+    setModalsIsOpenStates((prevState) => ({
+      ...prevState,
+      isDeleteNodeModalOpen: true,
+    }));
   };
 
   return (
-    <div onClick={handleStopPropagation} className="tree-node__list-item-buttons">
+    <div
+      onClick={handleStopPropagation}
+      className="tree-node__list-item-buttons"
+    >
       <Button
         className="
           tree-node__list-item-buttons__button
